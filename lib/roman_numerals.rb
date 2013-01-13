@@ -1,5 +1,2 @@
-require "roman_numerals/version"
-
-module RomanNumerals
-  # Your code goes here...
-end
+require_relative "roman_numerals/version"
+require_relative "roman_numerals/roman_numerals"
