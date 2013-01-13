@@ -32,6 +32,24 @@ module RomanNumerals
       it "handles 10" do
         subject.translate(10).should eq "X"
       end
+      it "handles 11" do
+        subject.translate(11).should eq "XI"
+      end
+      it "handles 12" do
+        subject.translate(12).should eq "XII"
+      end
+      it "handles 13" do
+        subject.translate(13).should eq "XIII"
+      end
+      it "handles 14" do
+        subject.translate(14).should eq "XIV"
+      end
+      it "handles 15" do
+        subject.translate(15).should eq "XV"
+      end
+      it "handles 16" do
+        subject.translate(15).should eq "XV"
+      end
     end
   end
 end
