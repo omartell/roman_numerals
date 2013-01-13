@@ -1,25 +1,25 @@
 module RomanNumerals
+  UNITS = {
+    "1"   =>  "I",
+    "5"   => "V",
+    "10"  => "X"
+  }
   def self.translate(normal)
-    if normal == 1
-      "I"
-    elsif normal == 2
-      "II"
-    elsif normal == 3
-      "III"
-    elsif normal == 4
-      "IV"
-    elsif normal == 5
-      "V"
-    elsif normal == 6
-      "VI"
-    elsif normal == 7
-      "VII"
-    elsif normal == 8
-      "VIII"
-    elsif normal == 9
-      "IX"
-    else
-      "X"
+    mod5_result   = normal % 5
+    mod10_result  = normal % 10
+
+    if mod10_result == 0
+      UNITS["10"]
+    elsif mod5_result == 0
+      UNITS["5"]
+    elsif mod5_result <= 3 && normal/5 == 0
+      UNITS["1"] * mod5_result
+    elsif mod5_result == 4 && normal/5 == 0
+      UNITS["1"] + UNITS["5"]
+    elsif mod5_result <= 3 && normal/5 == 1
+      UNITS["5"] + UNITS["1"] * mod5_result
+    elsif mod5_result == 4 && normal/5 == 1
+      UNITS["1"] + UNITS["10"]
     end
   end
 end
