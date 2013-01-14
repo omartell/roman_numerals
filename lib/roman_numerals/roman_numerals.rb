@@ -26,6 +26,16 @@ module RomanNumerals
       end
     end
 
+    if ((10 - number) == 1) || ((number % 10) >= 0 && number >= 10)
+      if (10 - number) == 1
+        result += UNITS["1"] + UNITS["10"]
+        number = 0
+      else
+        result += UNITS["10"]
+        number = number - 10
+      end
+    end
+
     if ((5 - number) == 1) || ((number % 5) >= 0 && number >= 5)
       if (5 - number) == 1
         result += UNITS["1"] + UNITS["5"]
