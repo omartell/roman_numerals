@@ -18,15 +18,18 @@ module RomanNumerals
       end
     end
 
-    if ((5 - number) == 1) || ((number % 5) >= 0 && number >= 5)
-      if (5 - number) == 1
-        result += UNITS["1"] + UNITS["5"]
-        number = 0
-      else
-        result += UNITS["5"]
-        number = number - 5
+    ((number+1) / 5).times do ||
+      if ((5 - number) == 1) || ((number % 5) >= 0 && number >= 5)
+        if (5 - number) == 1
+          result += UNITS["1"] + UNITS["5"]
+          number = 0
+        else
+          result += UNITS["5"]
+          number = number - 5
+        end
       end
     end
+    
     if (number % 5) <= 3
       result += UNITS["1"] * (number % 5)
     end
