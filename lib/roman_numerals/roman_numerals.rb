@@ -6,33 +6,18 @@ module RomanNumerals
   }
   def self.translate(number)
     result = ""
-    ((number+1) / 10).times do ||
-      if ((10 - number) == 1) || ((number % 10) >= 0 && number >= 10)
-        if (10 - number) == 1
-          result += UNITS["1"] + UNITS["10"]
-          number = 0
+    [10, 5].each do |unit|
+      ((number + 1)/unit).times do
+        if (unit - number) == 1
+          result += UNITS["1"] + UNITS[unit.to_s]
+          number = number - unit + 1
         else
-          result += UNITS["10"]
-          number = number - 10
+          result += UNITS[unit.to_s]
+          number = number - unit
         end
       end
     end
-
-    ((number+1) / 5).times do ||
-      if ((5 - number) == 1) || ((number % 5) >= 0 && number >= 5)
-        if (5 - number) == 1
-          result += UNITS["1"] + UNITS["5"]
-          number = 0
-        else
-          result += UNITS["5"]
-          number = number - 5
-        end
-      end
-    end
-    
-    if (number % 5) <= 3
-      result += UNITS["1"] * (number % 5)
-    end
+    result += UNITS["1"] * (number % 5)
     result
   end
 end
