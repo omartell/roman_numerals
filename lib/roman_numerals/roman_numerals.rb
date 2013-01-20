@@ -1,23 +1,25 @@
 module RomanNumerals
   UNITS = {
-    "1"   =>  "I",
-    "5"   => "V",
-    "10"  => "X"
+    1000 => "M",
+    100 => "C",
+    50 => "L",
+    10 => "X",
+    5  => "V",
+    1  => "I"
   }
   def self.translate(number)
     result = ""
-    [10, 5].each do |unit|
-      ((number + 1)/unit).times do
-        if (unit - number) == 1
-          result += UNITS["1"] + UNITS[unit.to_s]
-          number = number - unit + 1
-        else
-          result += UNITS[unit.to_s]
-          number = number - unit
-        end
+    UNITS.keys.each do |unit, index|
+      (number/unit).times do
+        result += UNITS[unit]
+        number -= unit
+      end
+      allowed_difference = 10**(number.to_s.size - 1)
+      actual_difference  = (unit - number)
+      if  actual_difference <= allowed_difference && unit != 1
+        return result + translate(allowed_difference) + translate(number + allowed_difference)
       end
     end
-    result += UNITS["1"] * (number % 5)
     result
   end
 end
