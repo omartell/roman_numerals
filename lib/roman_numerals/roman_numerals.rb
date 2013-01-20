@@ -1,6 +1,7 @@
 module RomanNumerals
   ROMAN_UNITS = {
     1000 => "M",
+    500 => "D",
     100 => "C",
     50 => "L",
     10 => "X",
